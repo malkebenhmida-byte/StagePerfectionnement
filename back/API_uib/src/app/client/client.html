@@ -1,0 +1,178 @@
+<app-navbar></app-navbar>
+<div class="table-container">
+
+  Top controls 
+  <div class="table-controls">
+    <div>
+      <label>
+        <select>
+          <option>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select>
+        Clients pour page
+      </label>
+    </div>
+
+    <div>
+      <strong>Rechercher un client :</strong>
+      <input type="text" placeholder="ID du client" [(ngModel)]="searchId">
+      <button (click)="searchClient()">Rechercher</button>
+    </div>
+  </div>
+
+ 
+   <div class="table-wrapper">
+  <table class="client-table">
+    <thead>
+      <tr>
+        <th>Identifiant</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date Naissance</th>
+        <th>Genre</th>
+        <th>Adresse</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let c of clients$ | async">
+        <td>{{ c.identifiant }}</td>
+        <td>{{ c.nom }}</td>
+        <td>{{ c.prenom }}</td>
+        <td>{{ c.date_naiss }}</td>
+        <td>{{ c.genre }}</td>
+        <td>{{ c.adresse }}</td>
+        <td>{{ c.adresse_mail }}</td>
+        <td>{{ c.num_tel }}</td>
+        <td class="actions">
+          <button class="btn-edit" [routerLink]="['/client-modif', c.identifiant]">Modifier</button>
+
+  <button class="btn-delete" (click)="deleteClient(c.identifiant)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+ 
+  <div class="table-controls" style="margin-top: 10px;">
+    <div>
+      Affichage de {{ clients.length }} of {{ clients.length }} Clients
+    </div>
+
+    <div class="pagination">
+      <button>&laquo;</button>
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>5</button>
+      <button>&raquo;</button>
+    </div>
+  </div>
+
+</div> 
+<!-- 
+<app-navbar></app-navbar>
+<div class="table-container">
+
+  
+  <div class="table-controls">
+    <div>
+      <label>
+        <select (change)="onPageSizeChange($event)">
+          <option>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select>
+        Clients pour page
+      </label>
+    </div>
+
+    <div>
+      <strong>Rechercher un client :</strong>
+      <input type="text" placeholder="ID du client" [(ngModel)]="searchId">
+      <button (click)="searchClient()">Rechercher</button>
+    </div>
+  </div>
+
+  
+  <div class="table-wrapper">
+    <table class="client-table">
+      <thead>
+        <tr>
+          <th>Identifiant</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Date Naissance</th>
+          <th>Genre</th>
+          <th>Adresse</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+       
+        <tr *ngFor="let c of pagedClients">
+          <td>{{ c.identifiant }}</td>
+          <td>{{ c.nom }}</td>
+          <td>{{ c.prenom }}</td>
+          <td>{{ c.date_naiss }}</td>
+          <td>{{ c.genre }}</td>
+          <td>{{ c.adresse }}</td>
+          <td>{{ c.adresse_mail }}</td>
+          <td>{{ c.num_tel }}</td>
+          <td class="actions">
+            <button class="btn-edit" [routerLink]="['/client-modif', c.identifiant]">
+              Modifier
+            </button>
+
+            <button class="btn-delete" (click)="deleteClient(c.identifiant)">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+
+       
+        <tr *ngIf="totalClients === 0">
+          <td colspan="9" style="text-align:center; padding:20px;">
+            Aucun client trouvé
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+ 
+  <div class="table-controls" style="margin-top: 10px;">
+    <div>
+      Affichage de 
+      {{ totalClients === 0 ? 0 : (currentPage - 1) * pageSize + 1 }} 
+      à 
+     {{ getEndIndex() }}
+      sur {{ totalClients }} Clients
+    </div>
+
+    <div class="pagination">
+      <button (click)="goToPage(currentPage - 1)">&laquo;</button>
+
+      <button
+        *ngFor="let p of [].constructor(getTotalPages()); let i = index"
+        [class.active]="currentPage === i + 1"
+        (click)="goToPage(i + 1)">
+        {{ i + 1 }}
+      </button>
+
+      <button (click)="goToPage(currentPage + 1)">&raquo;</button>
+    </div>
+  </div>
+
+</div>
+-->
